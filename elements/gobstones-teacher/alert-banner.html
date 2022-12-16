@@ -1,0 +1,91 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+</head><body><dom-module id="alert-banner">
+  <template>
+    <style>
+      .flash {
+        padding: 20px 16px;
+        border-style: solid;
+        border-width: 1px 0;
+        white-space: normal;
+      }
+
+      .closed {
+        display: none;
+      }
+
+      .flash-error {
+        background-color: #fdebe9;
+        border-color: #ff818266;
+      }
+
+      .flash-error iron-icon {
+        color: #cf222e;
+      }
+
+      .flash-warning {
+        background-color: #fefbdd;
+        border-color: #b0880033;
+      }
+
+      .flash-warning iron-icon {
+        color: #b08800;
+      }
+
+      .flash-info {
+        background-color: #dbedff;
+        border-color: #04428933
+      }
+
+      .flash-info iron-icon {
+        color: #04428999;
+      }
+
+      .flash-success {
+        background-color: #dafbe1;
+        border-color: #04428933
+      }
+
+      .flash-success iron-icon {
+        color: #1e7f37;
+      }
+
+      .flash-close {
+        float: right;
+        padding: 16px;
+        margin: -16px;
+        text-align: center;
+        cursor: pointer;
+        background: none;
+        border: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      .flash-close iron-icon {
+        height: 16px;
+      }
+
+      .flash-close iron-icon:hover {
+        opacity: .7;
+      }
+    </style>
+
+    <iron-localstorage name="{{code}}" value="{{closed}}" on-iron-localstorage-load-empty="initialize" on-iron-localstorage-load="showIfImportant">
+    </iron-localstorage>
+
+    <div class$="{{cssClass(level, closed)}}">
+      <button on-tap="close" aria-label="Close" class="flash-close" type="button">
+        <iron-icon icon="close"></iron-icon>
+      </button>
+      <iron-icon icon="{{icon(level)}}"></iron-icon>
+      <strong>{{ title }}</strong>
+      <div>
+        {{ message }}
+      </div>
+    </div>
+  </template>
+
+  </dom-module>
+<script src="alert-banner.js"></script></body></html>
